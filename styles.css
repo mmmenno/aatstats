@@ -1,0 +1,70 @@
+html, body{
+	margin:0;
+	padding: 10px 10px 100px 10px;
+	font-family: 'Nunito', sans-serif;
+	background-color: #fff;
+	color: #5B5B5B;
+}
+.intro{
+	text-align: right;
+}
+.querylink{
+	text-align: right;
+	padding-top: 80px;
+}
+.collections a{
+	border-bottom: 4px solid #ccc;
+}
+h1{
+	font-size: 48px;
+	margin-top: 0px;
+}
+a{
+	color: #101010;
+	text-decoration: none;
+}
+a:hover{
+	color: #000;
+	text-decoration: underline;
+}
+.row{
+	margin-bottom: 3px;
+	background-color: #fff;
+}
+.barcol{
+	padding-top: 8px;
+}
+.bar{
+	height: 3px;
+	background-color: #ccc;
+}
+.bar.saa{
+	background-color: #000;
+}
+.barcol .nharchief{
+	background-color: #B77C1B;
+}
+.barcol .rma{
+	background-color: #94BC6C;
+}
+.barcol .iisg{
+	background-color: #4A90E2;
+}
+.barcol .am{
+	background-color: #D0021B;
+}
+.barcol .uva{
+	background-color: #9013FE;
+}
+.yeardiv .year{
+	width: 2px;
+	float: left;
+	min-height: 2px;
+	background-color: #000;
+}
+.yeardiv .empty{
+	width: 2px;
+	height: 2px;
+	float: left;
+	background-color: #E1E1E1;
+}
