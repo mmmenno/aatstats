@@ -114,7 +114,7 @@ foreach($results as $v){
 	<?php foreach ($all as $set) { ?>
 	<div class="row">
 		<div class="col-md-4">
-				<a target="_blank" href="index.php?set=<?= $set['set']['value'] ?>"><?= $set['set']['value'] ?></a>
+				<a href="index.php?set=<?= $set['set']['value'] ?>"><?= $set['set']['value'] ?></a>
 		</div>
 		<div class="col-md-7 barcol">
 			
