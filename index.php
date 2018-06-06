@@ -123,7 +123,7 @@ $all = $data['results']['bindings'];
 	<?php foreach ($all as $term) { ?>
 	<div class="row">
 		<div class="col-md-3">
-				<a target="_blank" href="term.php?term=<?= $term['term']['value'] ?>"><?= $term['label']['value'] ?></a>
+				<a href="term.php?term=<?= $term['term']['value'] ?>"><?= $term['label']['value'] ?></a>
 		</div>
 		<div class="col-md-8 barcol">
 			
