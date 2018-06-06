@@ -118,7 +118,7 @@ foreach($results as $v){
 		</div>
 		<div class="col-md-7 barcol">
 			
-			<?  
+			<?php 
 				preg_match("/data.adamlink.nl\/([a-z]+)\//", $set['set']['value'],$found);
 				$classname = $found[1];
 
@@ -177,7 +177,7 @@ $width = ($lastyear - $firstyear)*2;
 	<div style="float: right;"><h2><?= $lastyear ?></h2></div>
 	<h2><?= $firstyear ?></h2>
 
-	<? 
+	<?php
 	for($i=$firstyear; $i<$lastyear; $i++) { 
 		if(isset($years[$i])){ 
 			echo '<div class="year" style="height:' . $years[$i] . 'px"></div>';

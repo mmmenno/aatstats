@@ -127,7 +127,7 @@ $all = $data['results']['bindings'];
 		</div>
 		<div class="col-md-8 barcol">
 			
-			<?  
+			<?php 
 				$cnt = $term['count']['value'];
 				$lines = floor($cnt/1000);
 				$rest = $cnt - ($lines*1000);
