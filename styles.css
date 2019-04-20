@@ -19,6 +19,14 @@ h1{
 	font-size: 48px;
 	margin-top: 0px;
 }
+h2{
+	font-size: 32px;
+	margin-top: 0px;
+}
+h3{
+	font-size: 24px;
+	margin-top: 0px;
+}
 a{
 	color: #101010;
 	text-decoration: none;
@@ -67,4 +75,7 @@ a:hover{
 	height: 2px;
 	float: left;
 	background-color: #E1E1E1;
+}
+img{
+	width: 100%;
 }
