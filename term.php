@@ -21,18 +21,19 @@ $url = "https://api.druid.datalegend.net/datasets/adamnet/all/services/endpoint/
 $querylink = "https://druid.datalegend.net/AdamNet/all/sparql/endpoint#query=" . urlencode($sparqlquery) . "&endpoint=https%3A%2F%2Fdruid.datalegend.net%2F_api%2Fdatasets%2FAdamNet%2Fall%2Fservices%2Fendpoint%2Fsparql&requestMethod=POST&outputFormat=table";
 
 
-// Druid does not like url parameters, send accept header instead
-$opts = [
-    "http" => [
-        "method" => "GET",
-        "header" => "Accept: application/sparql-results+json\r\n"
-    ]
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch,CURLOPT_USERAGENT,'adamlink');
+$headers = [
+  'Accept: application/sparql-results+json'
 ];
-
-$context = stream_context_create($opts);
-
-// Open the file using the HTTP headers set above
-$json = file_get_contents($url, false, $context);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+$json = curl_exec ($ch);
+curl_close ($ch);
 
 $data = json_decode($json,true);
 
@@ -57,20 +58,41 @@ GROUP BY ?year
 ORDER BY ASC(?year)
 ";
 
-$url = "https://api.data.adamlink.nl/datasets/AdamNet/all/services/endpoint/sparql?default-graph-uri=&query=" . urlencode($sparqlquery) . "&format=application%2Fsparql-results%2Bjson&timeout=120000&debug=on";
+$url = "https://api.druid.datalegend.net/datasets/adamnet/all/services/endpoint/sparql?query=" . urlencode($sparqlquery) . "";
 
-$querylink = "https://data.adamlink.nl/AdamNet/all/services/endpoint#query=" . urlencode($sparqlquery) . "&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.adamlink.nl%2F_api%2Fdatasets%2Fmenno%2Falles%2Fservices%2Falles%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table";
+$querylink = "https://druid.datalegend.net/AdamNet/all/sparql/endpoint#query=" . urlencode($sparqlquery) . "&endpoint=https%3A%2F%2Fdruid.datalegend.net%2F_api%2Fdatasets%2FAdamNet%2Fall%2Fservices%2Fendpoint%2Fsparql&requestMethod=POST&outputFormat=table";
 
-$json = file_get_contents($url);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch,CURLOPT_USERAGENT,'adamlink');
+$headers = [
+  'Accept: application/sparql-results+json'
+];
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+$json = curl_exec ($ch);
+curl_close ($ch);
 
 $data = json_decode($json,true);
+
+// /print_r($sparqlquery);
 
 $years = array();
 $results = $data['results']['bindings'];
 
 $firstyear = $results[0]['year']['value'];
+if($firstyear < 1500){
+	$firstyear = 1500;
+}
 $reversed = array_reverse($results);
 $lastyear = $reversed[0]['year']['value'];
+if($lastyear > 2017){
+	$lastyear = 2017;
+}
+
 
 foreach($results as $v){
 	$years[$v['year']['value']] = $v['count']['value'];
